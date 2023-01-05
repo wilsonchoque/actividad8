@@ -1,0 +1,51 @@
+<div class="container">
+
+    <div class="card">
+        <h5 class="card-header text-center">REGISTRAR PERSONAS</h5>
+        <div class="card-body">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Nombre:</label>
+                <input type="text" #nombreInput class="form-control" id="exampleInputEmail1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Apellido:</label>
+                <input type="text" #apellidoInput class="form-control" id="exampleInputEmail1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Edad</label>
+                <input type="number" #edadInput class="form-control" id="exampleInputPassword1">
+            </div>
+            <a href="#" (click)="registrar(nombreInput.value, apellidoInput.value, edadInput.value )" class="btn btn-outline-success d-block">Agregar Datos</a>
+
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Condicion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let nom of personas">
+                <td>{{nom[0]}}</td>
+                <td>{{nom[1]}}</td>
+                <td>{{nom[2]}}</td>
+                <td  *ngIf=" condicion(nom[2]); then mayor else menor" ></td>
+                
+                <ng-template #mayor > <td class="text-success"> {{nom[0]}} es mayor de edad </td> </ng-template>
+                <ng-template #menor > <td class="text-danger">{{nom[0]}} Es menor de edad </td></ng-template>
+
+              </tr>             
+              
+            </tbody>
+          </table>
+
+
+
+    </div>
+
+
+</div>
